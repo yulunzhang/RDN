@@ -68,8 +68,7 @@ For more informaiton, please refer to [EDSR(Torch)](https://github.com/LimBee/NT
     LOG=./../experiment/DNX3F64D18C6G64P32-`date +%Y-%m-%d-%H-%M-%S`.txt
     CUDA_VISIBLE_DEVICES=1 th main.lua -scale 3 -nGPU 1 -netType resnet_cu -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset div2k -datatype t7  -DownKernel DN -splitBatch 4 -trainOnly true  -nEpochs 200 -preTrained ../experiment/model/RDN_BIX3.t7
     ```
-    Only RDN_BIX2.t7 was trained using 48x48 input patches. All other models were trained using 32x32 input patches in order to save training time.
-    However, smaller input patch size in training would lower the performance to some degree.
+
 ## Test
 ### Quick start
 1. Download models for our paper and place them in '/RDN_TestCode/model'.
