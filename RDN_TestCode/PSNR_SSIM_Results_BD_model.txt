@@ -1,0 +1,18 @@
+**********************
+Method_1: RDN; Set: Set5
+x3 1 baby_RDN_x3.png: PSNR= 35.734858 SSIM= 0.930014
+x3 2 bird_RDN_x3.png: PSNR= 38.570668 SSIM= 0.973705
+x3 3 butterfly_RDN_x3.png: PSNR= 31.485465 SSIM= 0.953219
+x3 4 head_RDN_x3.png: PSNR= 34.120422 SSIM= 0.836575
+x3 5 woman_RDN_x3.png: PSNR= 32.962897 SSIM= 0.946437
+--------Mean--------
+x3: PSNR= 34.574862 SSIM= 0.927990
+**********************
+Method_2: RDNplus; Set: Set5
+x3 1 baby_RDNplus_x3.png: PSNR= 35.764368 SSIM= 0.930330
+x3 2 bird_RDNplus_x3.png: PSNR= 38.680263 SSIM= 0.974182
+x3 3 butterfly_RDNplus_x3.png: PSNR= 31.735946 SSIM= 0.954994
+x3 4 head_RDNplus_x3.png: PSNR= 34.165740 SSIM= 0.837201
+x3 5 woman_RDNplus_x3.png: PSNR= 33.130436 SSIM= 0.947744
+--------Mean--------
+x3: PSNR= 34.695350 SSIM= 0.928890

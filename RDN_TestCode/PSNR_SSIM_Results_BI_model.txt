@@ -1,0 +1,46 @@
+**********************
+Method_1: RDN; Set: Set5
+x2 1 baby_RDN_x2.png: PSNR= 38.963960 SSIM= 0.968137
+x2 2 bird_RDN_x2.png: PSNR= 43.531675 SSIM= 0.990799
+x2 3 butterfly_RDN_x2.png: PSNR= 36.025599 SSIM= 0.980191
+x2 4 head_RDN_x2.png: PSNR= 36.073071 SSIM= 0.892126
+x2 5 woman_RDN_x2.png: PSNR= 36.615288 SSIM= 0.975564
+--------Mean--------
+x2: PSNR= 38.241919 SSIM= 0.961363
+x3 1 baby_RDN_x3.png: PSNR= 35.748444 SSIM= 0.930614
+x3 2 bird_RDN_x3.png: PSNR= 38.726571 SSIM= 0.974767
+x3 3 butterfly_RDN_x3.png: PSNR= 31.912028 SSIM= 0.957039
+x3 4 head_RDN_x3.png: PSNR= 34.162159 SSIM= 0.837863
+x3 5 woman_RDN_x3.png: PSNR= 32.979749 SSIM= 0.947567
+--------Mean--------
+x3: PSNR= 34.705790 SSIM= 0.929570
+x4 1 baby_RDN_x4.png: PSNR= 33.898529 SSIM= 0.895563
+x4 2 bird_RDN_x4.png: PSNR= 35.512649 SSIM= 0.948977
+x4 3 butterfly_RDN_x4.png: PSNR= 29.119866 SSIM= 0.931496
+x4 4 head_RDN_x4.png: PSNR= 32.987903 SSIM= 0.798811
+x4 5 woman_RDN_x4.png: PSNR= 30.825588 SSIM= 0.919938
+--------Mean--------
+x4: PSNR= 32.468907 SSIM= 0.898957
+**********************
+Method_2: RDNplus; Set: Set5
+x2 1 baby_RDNplus_x2.png: PSNR= 38.985351 SSIM= 0.968244
+x2 2 bird_RDNplus_x2.png: PSNR= 43.602754 SSIM= 0.990973
+x2 3 butterfly_RDNplus_x2.png: PSNR= 36.145450 SSIM= 0.980449
+x2 4 head_RDNplus_x2.png: PSNR= 36.097938 SSIM= 0.892560
+x2 5 woman_RDNplus_x2.png: PSNR= 36.649278 SSIM= 0.975580
+--------Mean--------
+x2: PSNR= 38.296154 SSIM= 0.961561
+x3 1 baby_RDNplus_x3.png: PSNR= 35.766117 SSIM= 0.930806
+x3 2 bird_RDNplus_x3.png: PSNR= 38.860294 SSIM= 0.975161
+x3 3 butterfly_RDNplus_x3.png: PSNR= 31.993316 SSIM= 0.957429
+x3 4 head_RDNplus_x3.png: PSNR= 34.197544 SSIM= 0.838427
+x3 5 woman_RDNplus_x3.png: PSNR= 33.078590 SSIM= 0.948261
+--------Mean--------
+x3: PSNR= 34.779172 SSIM= 0.930017
+x4 1 baby_RDNplus_x4.png: PSNR= 33.948714 SSIM= 0.896176
+x4 2 bird_RDNplus_x4.png: PSNR= 35.826904 SSIM= 0.951878
+x4 3 butterfly_RDNplus_x4.png: PSNR= 29.313970 SSIM= 0.933335
+x4 4 head_RDNplus_x4.png: PSNR= 33.035304 SSIM= 0.799711
+x4 5 woman_RDNplus_x4.png: PSNR= 30.926374 SSIM= 0.920239
+--------Mean--------
+x4: PSNR= 32.610253 SSIM= 0.900268
