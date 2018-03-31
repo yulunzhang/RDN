@@ -39,7 +39,7 @@
 ## The whole test pipeline
 1. Prepare test data.
 
-    Place the original test sets (e.g., Set5) in 'OriginalTestData'.
+    Place the original test sets (e.g., Set5, other test sets are available from [GoogleDrive](https://drive.google.com/drive/folders/1xyiuTr6ga6ni-yfTP7kyPHRmfBakWovo?usp=sharing) or [Baidu](https://pan.baidu.com/s/1yBI_-rknXT2lm1UAAB_bag)) in 'OriginalTestData'.
 
     Run 'Prepare_TestData_HR_LR.m' in Matlab to generate HR/LR images with different degradation models.
 2. Conduct image SR. 
