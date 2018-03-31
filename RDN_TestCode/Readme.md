@@ -5,10 +5,12 @@
 
     All the models can be downloaded from Dropbox
     https://www.dropbox.com/sh/ngcvqdas167gol2/AAAdJe9w6s2fpo_KEGZe7d4Ra?dl=0
+    
     or Baidu
     https://pan.baidu.com/s/116FAzKnaJnAdxY_B6ENp_A
 
 2. Run 'TestRDN.lua'
+
 **You can use scripts in file 'TestRDN_scripts' to produce results for our paper.**
     ```bash
     # No self-ensemble: RDN
