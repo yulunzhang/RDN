@@ -4,7 +4,7 @@ This repository is for RDN introduced in the following paper
 [Yulun Zhang](http://yulunzhang.com/), [Yapeng Tian](http://yapengtian.org/), [Yu Kong](http://www1.ece.neu.edu/~yukong/), [Bineng Zhong](https://scholar.google.de/citations?user=hvRBydsAAAAJ&hl=en), and [Yun Fu](http://www1.ece.neu.edu/~yunfu/), "Residual Dense Network for Image Super-Resolution", CVPR 2018 (spotlight), [[arXiv]](https://arxiv.org/abs/1802.08797) 
 
 
-The code is built on [EDSR (Torch)](https://github.com/LimBee/NTIRE2017) and tested on Ubuntu 14.04 environment (Torch7, CUDA8.0, CuDNN5.1) with Titan X/1080Ti/Xp GPUs.
+The code is built on [EDSR (Torch)](https://github.com/LimBee/NTIRE2017) and tested on Ubuntu 14.04 environment (Torch7, CUDA8.0, cuDNN5.1) with Titan X/1080Ti/Xp GPUs.
 
 ## Contents
 1. [Introduction](#introduction)
@@ -104,7 +104,7 @@ For more informaiton, please refer to [EDSR(Torch)](https://github.com/LimBee/NT
 ### The whole test pipeline
 1. Prepare test data.
 
-    Place the original test sets (e.g., Set5) in 'OriginalTestData'.
+    Place the original test sets (e.g., Set5, other test sets are available from [GoogleDrive](https://drive.google.com/drive/folders/1xyiuTr6ga6ni-yfTP7kyPHRmfBakWovo?usp=sharing) or [Baidu](https://pan.baidu.com/s/1yBI_-rknXT2lm1UAAB_bag)) in 'OriginalTestData'.
 
     Run 'Prepare_TestData_HR_LR.m' in Matlab to generate HR/LR images with different degradation models.
 2. Conduct image SR. 
