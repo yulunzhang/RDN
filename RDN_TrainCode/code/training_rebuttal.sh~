@@ -1,0 +1,504 @@
+# Bicubic scale 2
+th main.lua -scale 2 -nFeat 256 -nResBlock 36 -patchSize 96 -scaleRes 0.1 -skipBatch 3
+
+
+# Bicubic scale 3 from pre-trained bicubic scale 2 model
+#th main.lua -scale 3 -netType resnet_cu -nFeat 256 -nResBlock 36 -patchSize 144 -scaleRes 0.1 -skipBatch 3 -preTrained ../demo/model/bicubic_x2.t7
+
+th main.lua -nGPU 1 -gpuid 1 -scale 3 -netType resnet_cu -nFeat 64 -nResBlock 36 -nDenseConv 12 -nDenseBlock 6 -growthRate 64 -patchSize 48 -scaleRes 0.1 -skipBatch 3 -preTrained ../demo/model/FDSR_x2_DIV2K_F64N64D6C12P32M255.t7 
+
+LOG=./../experiment/FDSR-X3F64D6C64P48M270-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -nGPU 1 -gpuid 1 -scale 3 -netType resnet_cu -nFeat 64 -nResBlock 36 -nDenseConv 12 -nDenseBlock 6 -growthRate 64 -patchSize 48 -scaleRes 1 -skipBatch 3 -preTrained ../experiment/2017-09-27_09-46-45/model/model_82.t7 2>&1 | tee $LOG
+ 
+
+# Bicubic scale 4 from pre-trained bicubic scale 2 model
+#th main.lua -scale 4 -netType resnet_cu -nFeat 256 -nResBlock 36 -patchSize 192 -scaleRes 0.1 -skipBatch 3 -preTrained ../demo/model/bicubic_x2.t7
+
+th main.lua -nGPU 1 -gpuid 2 -scale 4 -netType resnet_cu -nFeat 64 -nResBlock 36 -nDenseConv 12 -nDenseBlock 6 -growthRate 64 -patchSize 48 -scaleRes 0.1 -skipBatch 3 -preTrained ../demo/model/FDSR_x2_DIV2K_F64N64D6C12P32M255.t7 
+
+LOG=./../experiment/FDSR-X4F64D6C64P48M270-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -nGPU 1 -gpuid 2 -scale 4 -netType resnet_cu -nFeat 64 -nResBlock 36 -nDenseConv 12 -nDenseBlock 6 -growthRate 64 -patchSize 48 -scaleRes 1 -skipBatch 3 -preTrained ../experiment/2017-09-27_09-46-59/model/model_101.t7 2>&1 | tee $LOG
+
+# Bicubic multicale
+#th main.lua -scale 2_3_4 -netType multiscale_unknown -nResBlock 80 -patchSize 64 -multiPatch true -skipBatch 3
+
+
+
+
+
+# Bicubic scale 2 on SR291RGB
+th main.lua -scale 2 -nFeat 128 -nResBlock 36 -patchSize 32 -scaleRes 0.1 -skipBatch 3 -datadir /media/yulun/Disk6T/data/ImSR -dataset SR291x8RGB
+CUDA_VISIBLE_DEVICES=3,4 th main.lua -nGPU 2 -scale 2 -netType baseline_dense -nFeat 256 -nResBlock 36 -patchSize 96 -scaleRes 0.1 -skipBatch 3-nFeat 128 -nDenseBlock 6 -nDenseConv 12 -growthRate 128 -patchSize 96 -scaleRes 0.1 -skipBatch 3
+
+CUDA_VISIBLE_DEVICES=3 
+th main.lua -nGPU 2 -scale 2 -netType baseline_dense -nFeat 128 -nDenseBlock 8 -nDenseConv 12 -growthRate 128 -patchSize 64 -scaleRes 0.1 -skipBatch 3
+
+
+# Bicubic scale 2
+LOG=./../experiment/FDSR-X2F64D12C12G64P48NoPreTrain-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -nGPU 1 -gpuid 3 -scale 2 -netType baseline_dense -nFeat 64 -nResBlock 36 -nDenseConv 12 -nDenseBlock 12 -growthRate 64 -patchSize 48 -scaleRes 1 -skipBatch 3  2>&1 | tee $LOG
+
+# Bicubic scale 3
+LOG=./../experiment/FDSR-X3F64D6C64P72NoPreTrain-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -nGPU 1 -gpuid 1 -scale 3 -netType baseline_dense -nFeat 64 -nResBlock 36 -nDenseConv 12 -nDenseBlock 6 -growthRate 64 -patchSize 72 -scaleRes 1 -skipBatch 3  2>&1 | tee $LOG
+
+# Bicubic scale 4
+LOG=./../experiment/FDSR-X4F64D6C64P96NoPreTrain-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -nGPU 1 -gpuid 2 -scale 4 -netType baseline_dense -nFeat 64 -nResBlock 36 -nDenseConv 12 -nDenseBlock 6 -growthRate 64 -patchSize 96 -scaleRes 1 -skipBatch 3  2>&1 | tee $LOG
+
+
+
+# RDSR_E3 Bicubic x2
+LOG=./../experiment/RDSR_E3-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 4 -netType RDSR_E3 -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 2>&1 | tee $LOG
+
+# RDSR_E3 Bicubic x2
+LOG=./../experiment/RDSR_E3-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 4 -netType RDSR_E3 -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 2>&1 | tee $LOG
+
+
+
+
+
+# RDSR_ES3 Bicubic x2
+LOG=./../experiment/RDSR_ES3-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 3 -netType RDSR_ES3 -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 -nEpochs 1000   2>&1 | tee $LOG
+
+
+# RDSR_P96 Bicubic x2
+LOG=./../experiment/RDSR_P96-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0,1,3 th main.lua -scale 2 -nGPU 3 -gpuid 1 -netType RDSR -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 96 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 -nEpochs 1000 -preTrained ../demo/model/RDSR_x2_model_473.t7 2>&1 | tee $LOG
+
+# RDSR_F256P16 Bicubic x2
+LOG=./../experiment/RDSR_F256P16-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0,1,3 th main.lua -scale 2 -nGPU 3 -gpuid 1 -netType RDSR -nFeat 256 -nDenseBlock 6 -nDenseConv 12 -growthRate 256 -patchSize 16 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 -nEpochs 1000 2>&1 | tee $LOG
+
+
+# RDSR_GFReLU Bicubic x2
+LOG=./../experiment/RDSR_GFReLU-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDSR_GFReLU -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 -nEpochs 1000   2>&1 | tee $LOG
+
+# RDSR_LFReLU0 Bicubic x2
+LOG=./../experiment/RDSR_LFReLU0-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 2 -netType RDSR_LFReLU0 -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 -nEpochs 1000   2>&1 | tee $LOG
+
+# RDSR_FEReLU Bicubic x2
+LOG=./../experiment/RDSR_FEReLU-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 4 -netType RDSR_FEReLU -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -nTrain_DIV2K 800 -valOffset 800 -nEpochs 1000   2>&1 | tee $LOG
+
+
+# RDSR_LFReLU0 fine-tune on DIV2KDRF Bicubic x2
+LOG=./../experiment/RDSR_LFReLU0_DIV2KRDF_finetune-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDSR_LFReLU0 -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -dataset div2kdrf -datatype t7 -preTrained ../experiment/2017-10-04_21-40-18/RDSR_LFReLU0_model_624.t7 -lr 1.25e-5 -halfLife 100e3 -nThreads 3 2>&1 | tee $LOG
+
+
+# RDSR_LFReLU0 fine-tune on DIV2KDRF Bicubic x2
+LOG=./../experiment/RDFFSR-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -datadir /home/yulun/data -netType RDFFSR -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -skipBatch 3 -dataset div2k -datatype t7pack -augRF false 2>&1 | tee $LOG
+
+# RDFFSR on DIV2KRF Bicubic x2
+LOG=./../experiment/RDFFSR-DIV2KRF-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 256 -nDenseBlock 6 -nDenseConv 12 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7 -augRF false 2>&1 | tee $LOG
+
+# RDFFSR on DIV2KRF Bicubic x2
+LOG=./../experiment/RDFFSR-DIV2K-pretrain-99-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 256 -nDenseBlock 6 -nDenseConv 12 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7 -augRF false -preTrained ../experiment/2017-10-10_22-12-44/model/model_99.t7 2>&1 | tee $LOG
+
+LOG=./../experiment/RDFFSR-DIV2KRF-pretrain-508-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 256 -nDenseBlock 6 -nDenseConv 12 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7 -augRF true -preTrained ../experiment/2017-10-11_17-13-46/model/model_508.t7 -lr 2.5e-5 2>&1 | tee $LOG
+
+
+
+# RDFFSR on SR291RF Bicubic x2
+LOG=./../experiment/RDFFSR-DIV2KRF-pretrain267-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 9 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -preTrained ../experiment/2017-10-15_13-45-40/model/model_267.t7 -lr 1.25e-5 -augRF true 2>&1 | tee $LOG
+
+
+# RDFFSR on SR291RF Bicubic x2
+LOG=./../experiment/RDFFSR-D9-DIV2KRF-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 3 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 9 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -augRF true 2>&1 | tee $LOG
+
+
+# RDFFSR on SR291RF Bicubic x2
+LOG=./../experiment/RDFFSR-D6-DIV2KRF-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 2 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 6 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -augRF true 2>&1 | tee $LOG
+
+#RDFFSR_D9_pretain818 x2
+LOG=./../experiment/RDFFSR_D9-DIV2KRF-pretrain818-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 9 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -preTrained ../demo/model/RDFFSR_D9_818_x2.t7 -lr 1.25e-5 -augRF true 2>&1 | tee $LOG
+
+# check data augmentation
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 9 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -preTrained ../demo/model/RDFFSR_D9_818_x2.t7 -lr 1.25e-5 -augRF false
+
+
+
+# RDFFSR on SR291RF Bicubic x2
+LOG=./../experiment/DFFSR-F64D20C12G64-DIV2KRF-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -gpuid 2 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 20 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -augRF true 2>&1 | tee $LOG
+
+# RDFFSR on SR291RF Bicubic x2
+LOG=./../experiment/DFFSR-F64D20C12G64-DIV2KRF-trainOnly-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -gpuid 2 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 20 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -augRF true -trainOnly true 2>&1 | tee $LOG
+
+# RDFFSR on SR291RF Bicubic x2
+LOG=./../experiment/DFFSRBD-F64D20C10G64P48M1800-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -gpuid 2 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 20 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -preTrained ../demo/model/X2F64D20C10G64P48M1800.t7  -DownKernel BD 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRBD-F64D20C10G64P48M1800-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -gpuid 2 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 20 -nDenseConv 12 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -preTrained ../demo/model/X2F64D20C10G64P48M1800.t7  -DownKernel BD 2>&1 | tee $LOG
+
+# EDSRBD_X2
+LOG=./../experiment/EDSRBDX2-pretrain-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 20 -nDenseConv 10 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7 -DownKernel BD  -preTrained /media/yulun/Disk6T/projects/RDFFSR/demo/model/EDSR_x2.t7 2>&1 | tee $LOG
+
+# EDSRBD_X3
+LOG=./../experiment/EDSRBDX3-pretrain-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 3 -nGPU 1 -gpuid 1 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 20 -nDenseConv 10 -growthRate 64 -patchSize 72 -dataset div2k -datatype t7 -DownKernel BD -preTrained /media/yulun/Disk6T/projects/RDFFSR/demo/model/EDSR_x3.t7 2>&1 | tee $LOG
+
+# EDSRBD_X4
+LOG=./../experiment/EDSRBDX4-pretrain-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 4 -nGPU 1 -gpuid 3 -netType RDFFSRv1010 -nFeat 64 -nDenseBlock 20 -nDenseConv 10 -growthRate 64 -patchSize 96 -dataset div2k -datatype t7 -DownKernel BD -testEvery 1e4 -preTrained /media/yulun/Disk6T/projects/RDFFSR/demo/model/EDSR_x4.t7 2>&1 | tee $LOG
+
+
+
+## DFFSR BD finetune from DFFSR BIX2F64D20C10G64P48M1800
+# x3
+LOG=./../experiment/DFFSRBDX3P72-BIX2F64D20C10G64P48M1800-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0,1 th main.lua -scale 3 -nGPU 2 -netType resnet_cu -nFeat 64 -nDenseBlock 20 -nDenseConv 10 -growthRate 64 -patchSize 72 -dataset div2k -datatype t7 -preTrained ../demo/model/X2F64D20C10G64P48M1800.t7 -DownKernel BD 2>&1 | tee $LOG
+
+
+
+# DFFSRv1030 add opt.nFeaSDB
+LOG=./../experiment/DFFSRv1030-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 2 -nGPU 1 -netType DFFSRv1030 -nFeat 64 -nDenseBlock 2 -nDenseConv 3 -growthRate 6 -patchSize 48 -dataset div2k -datatype t7  -DownKernel BI -addBlockSkip true -nFeaSDB 64 2>&1 | tee $LOG
+
+
+LOG=./../experiment/DFFSRv1030-F64FD64D16C8G64P48-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1,2 th main.lua -scale 2 -nGPU 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 48 -dataset div2k -datatype t7  -DownKernel BI  2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-F64FD64D16C8G64P96-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1,2 th main.lua -scale 2 -nGPU 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  2>&1 | tee $LOG
+
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D8C8G64P96LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -scale 2 -nGPU 1 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 8 -nDenseConv 8 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true 2>&1 | tee $LOG
+
+
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D20C8G32P96LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 8 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true 2>&1 | tee $LOG
+
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D20C8G32P90LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 8 -growthRate 32 -patchSize 90 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true 2>&1 | tee $LOG
+
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D20C8G32P96LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 8 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true -trainOnly true 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D20C8G32P84LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 8 -growthRate 32 -patchSize 84 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true -trainOnly false 2>&1 | tee $LOG
+
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D20C8G32P96LRL1-pre25-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 8 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true -trainOnly true -preTrained ../experiment/2017-10-31_11-48-34/model/model_25.t7 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D20C8G32P84LRL1-pre27pre28pre25-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 96 -nDenseBlock 20 -nDenseConv 8 -growthRate 32 -patchSize 84 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true -trainOnly false -preTrained ../experiment/2017-10-31_17-48-17/model/model_27.t7 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-X2F64FD64D20C8G32P96LRL1-pre27pre28pre25-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 96 -nDenseBlock 20 -nDenseConv 8 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true -trainOnly false -preTrained ../experiment/2017-10-31_20-11-15-DFFSRv1030-X2F64FD64D20C8G32P84LRL1-pre27pre28pre25/model/model_237.t7 -startEpoch 237 2>&1 | tee $LOG
+
+
+### server 1
+LOG=./../experiment/DFFSRv1030-BIX2F64FD64D20C3G32P96LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 3 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-BIX2F64FD64D20C6G16P96LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 6 -growthRate 16 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-BIX2F64FD64D16C8G32P96LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 6 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI 2>&1 | tee $LOG
+
+
+
+LOG=./../experiment/BIX2SDSRF64R80P96-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -nFeat 64 -nResBlock 80 -patchSize 96  -skipBatch 3 -dataset div2k -datatype t7  -DownKernel BI 2>&1 | tee $LOG
+
+
+LOG=./../experiment/DFFSRv1030-BIX2F256FD256D12C6G32P48LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 3 -netType DFFSRv1030 -nFeat 256 -nFeaSDB 256 -nDenseBlock 12 -nDenseConv 6 -growthRate 32 -patchSize 48 -dataset div2k -datatype t7  -DownKernel BI -lr 5e-5 2>&1 | tee $LOG
+
+
+
+
+
+
+LOG=./../experiment/DFFSRv1030-BIX2F256FD256D12C6G32P96BS8LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType DFFSRv1030 -nFeat 256 -nFeaSDB 256 -nDenseBlock 12 -nDenseConv 6 -growthRate 32 -patchSize 48 -dataset div2k -datatype t7  -DownKernel BI -halfLife 400e3 -batchSize 8 -patchSize 96 2>&1 | tee $LOG
+
+
+
+##########################
+## train X3, X4 based on X2 model
+## 48x3=144, BIX3F64FD64D16C8G64P144
+LOG=./../experiment/DFFSRv1030-BIX3F64FD64D16C8G64P96-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -nGPU 1 -gpuid 2 -scale 3 -netType resnet_cu -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 96 -scaleRes 1 -skipBatch 3 -preTrained ../demo/model/X2F64D16C8G64P96M696.t7 -DownKernel BI  2>&1 | tee $LOG
+
+## 48x4=192, BIX3F64FD64D16C8G64P192
+LOG=./../experiment/DFFSRv1030-BIX3F64FD64D16C8G64P128-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -nGPU 1 -gpuid 3 -scale 4 -netType resnet_cu -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 128 -scaleRes 1 -skipBatch 3 -preTrained ../demo/model/X2F64D16C8G64P96M696.t7 -DownKernel BI 2>&1 | tee $LOG
+
+##################################################################################################################################
+## BI: Bicubic downsampling
+## train X3, X4 fine-tune
+## 32x3=96
+## 
+## 48x3=144, BIX3F64FD64D16C8G64P144
+## 65x3=195
+LOG=./../experiment/DFFSRv1030-BIX3F64FD64D16C8G64P96SB1-pre153-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -nGPU 1 -gpuid 1 -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 96 -skipBatch 3 -preTrained ../demo/model/BIX3M153.t7 -DownKernel BI -augRF true -splitBatch 1 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-BIX3F64FD64D16C8G64P144SB4-pre1088-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -nGPU 1 -gpuid 1 -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 144 -skipBatch 3 -preTrained ../demo/model/BIX3F64D16C8G64P96M1088.t7 -DownKernel BI -augRF true -splitBatch 4 -halfLife 100e3 -lr 5e-5 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-BIX3F64FD64D16C8G64P144SB4-pre298pre1088-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -nGPU 1 -gpuid 1 -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 144 -skipBatch 3 -preTrained ../experiment/2017-11-12_03-56-50/model/model_298.t7 -DownKernel BI -augRF true -splitBatch 4 -halfLife 100e3 -lr 6.25e-6 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-BIX3F64FD64D16C8G64P144SB4-preX2P96M696-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -nGPU 1 -gpuid 1 -scale 3 -netType resnet_cu -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 144 -skipBatch 3 -preTrained ../demo/model/X2F64D16C8G64P96M696.t7 -DownKernel BI -augRF true -splitBatch 4  2>&1 | tee $LOG
+
+
+## 32x4=128, splitBatch (SB)=1,GPU=11,28s/0.1k; SB=2,GPU=6,30s/0.1k; SB=4,GPU=3.5,34s/0.1k
+## 48x4=192, BIX4F64FD64D16C8G64P192
+## 65x4=260
+LOG=./../experiment/DFFSRv1030-BIX4F64FD64D16C8G64P128SB1-pre149-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -nGPU 1 -gpuid 1 -scale 4 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 128 -scaleRes 1 -skipBatch 3 -preTrained ../demo/model/BIX4M149.t7 -DownKernel BI -augRF true -splitBatch 2 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-BIX4F64FD64D16C8G64P192SB4-pre1044-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -nGPU 1 -gpuid 1 -scale 4 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8  -growthRate 64 -patchSize 192 -skipBatch 3 -preTrained ../demo/model/BIX4F64D16C8G64P128M1044.t7 -DownKernel BI -augRF true -splitBatch 4 -halfLife 100e3 -lr 5e-5 2>&1 | tee $LOG
+##################################################################################################################################
+
+
+##################################################################################################################################
+### BD: blur+downsample
+## data augmentation=false
+#BDX3F64FD64D16C8G64P96
+LOG=./../experiment/DFFSRv1030-BDX3F64FD64D16C8G32P96LRL1-preBDx3M9-`date +%Y-%m-%d-%H-%M-%S`.txt
+th main.lua -scale 3 -nGPU 1 -gpuid 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset div2k -datatype t7 -DownKernel BD  -addBlockSkip true -trainOnly false -preTrained ../demo/model/BDX3M9.t7 -augRF false -splitBatch 2 2>&1 | tee $LOG
+
+
+
+##################################################################################################################################
+
+##################################################################################################################################
+### DN: downsample+noise
+#DNX3F64FD64D16C8G64P96
+LOG=./../experiment/DFFSRv1030-DNX3F64FD64D16C8G32P96LRL1SB2-preBIx3-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 3 -nGPU 1 -gpuid 1 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset div2k -datatype t7 -DownKernel DN  -addBlockSkip true -trainOnly false -preTrained ../demo/model/BIX3M153.t7 -augRF false 2>&1 | tee $LOG
+##################################################################################################################################
+
+##################################################################################################################################
+## BIX2F64D20C6G32P96LF0
+LOG=./../experiment/BIX2F64D20C6G32P96LF0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 2 -nGPU 1 -netType DFFSR_LF0 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 5 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true -trainOnly false -augRF true -nEpochs 300 2>&1 | tee $LOG
+
+##################################################################################################################################
+##################################################################################################################################
+## BIX2F64D20C6G32P96CM0
+LOG=./../experiment/BIX2F64D20C6G32P96CM0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 2 -nGPU 1 -netType DFFSR_CM0 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 6 -growthRate 32 -patchSize 96 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip true -trainOnly false -augRF true -nEpochs 400 2>&1 | tee $LOG
+
+##################################################################################################################################
+# X2F64D10C6G32CM1LRL1
+LOG=./../experiment/DFFSRv1030-BIX2F64FD64D10C6G32P96CM1LRL1-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 10 -nDenseConv 6 -growthRate 64 -patchSize 96 -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip true -trainOnly false -augRF true 2>&1 | tee $LOG
+
+
+##################################################################################################################################
+# BIX2F64D20C6G32CM1LRL1GFF0
+LOG=./../experiment/BIX2F64D20C6G32CM1LRL1P72GFF0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType DFFSR_GFF0 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 6 -growthRate 32 -patchSize 72 -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip true -trainOnly false -augRF true 2>&1 | tee $LOG
+
+
+##################################################################################################################################
+# BIX2F64D20C6G32CM0LRL0GFF0
+LOG=./../experiment/BIX2F64D20C6G32CM0LRL0P72GFF0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType DFFSR_CM0LRL0GFF0 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 6 -growthRate 32 -patchSize 72 -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip false -trainOnly false -augRF true 2>&1 | tee $LOG
+
+##################################################################################################################################
+# BIX2F64D20C6G32CM1LRL0GFF0
+LOG=./../experiment/BIX2F64D20C6G32CM0LRL0P72GFF0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType DFFSR_CM1LRL0GFF0 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 6 -growthRate 32 -patchSize 72 -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip false -trainOnly false -augRF true 2>&1 | tee $LOG
+
+##################################################################################################################################
+# BIX2F64D20C6G32CM0LRL1GFF0
+LOG=./../experiment/BIX2F64D20C6G32CM0LRL1P72GFF0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 2 -nGPU 1 -gpuid 1 -netType DFFSR_CM0LRL0GFF0 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 6 -growthRate 32 -patchSize 72 -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip true -trainOnly false -augRF true 2>&1 | tee $LOG
+
+##################################################################################################################################
+# BIX2F64D20C6G32CM0LRL0GFF1
+LOG=./../experiment/BIX2F64D20C6G32P72CM0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -scale 2 -nGPU 1 -netType DFFSR_CM0 -nFeat 64 -nFeaSDB 64 -nDenseBlock 20 -nDenseConv 6 -growthRate 32 -patchSize 72 -dataset div2k -datatype t7  -DownKernel BI  -addBlockSkip false -trainOnly false -augRF true -nEpochs 400 2>&1 | tee $LOG
+
+
+##################################################################################################################################
+## rebuttal
+##################################################################################################################################
+### BI: bicubic
+## data augmentation=false
+#BIX2F64FD64D16C8G64P72
+# 
+LOG=./../experiment/RDN-BIX2F64FD64D16C8G64P72-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 72 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 2>&1 | tee $LOG
+
+
+
+
+
+
+##################################################################################################################################
+### BD: blur+downsample
+## data augmentation=false
+#BDX3F64FD64D16C8G64P96
+LOG=./../experiment/RDN-BDX3F64FD64D16C8G64P96-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel BD  -addBlockSkip true -splitBatch 2 2>&1 | tee $LOG
+
+
+
+##################################################################################################################################
+
+##################################################################################################################################
+### DN: downsample+noise
+#DNX3F64FD64D16C8G64P96
+LOG=./../experiment/RDN-DNX3F64FD64D16C8G64P96-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel DN  -addBlockSkip true -splitBatch 2 2>&1 | tee $LOG
+##################################################################################################################################
+
+
+
+
+##################################################################################################################################
+### BI: bicubic
+## data augmentation=false
+#BIX2-EDSR-F256R32P72
+# 
+LOG=./../experiment/EDSR-BIX2F256R32P72-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -scale 2 -nFeat 256 -nResBlock 32 -patchSize 72 -scaleRes 0.1 -skipBatch 3 2>&1 | tee $LOG
+
+
+##################################################################################################################################
+## rebuttal , learning rate should half with less epochs
+##################################################################################################################################
+### BI: bicubic
+## data augmentation=false
+#BIX2F64FD64D16C8G64P72
+# -halfLife 20
+LOG=./../experiment/RDN-BIX2F64FD64D16C8G64P72HL20-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 72 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 -halfLife 20e3 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-BIX2F64FD64D16C8G64P72HL20-SM0-pretrain25-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 72 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 -halfLife 20e3 -subMean false -preTrained ../experiment/2018-01-18_10-13-19-RDN-BIX2F64FD64D16C8G64P72HL20-2018-01-18-10-13-18/model/model_25.t7 -lr 1e-5 2>&1 | tee $LOG
+
+
+LOG=./../experiment/RDN-BIX2F64FD64D10C8G64P72HL20-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 10 -nDenseConv 8 -growthRate 64 -patchSize 72 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 -halfLife 20e3 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-BIX2F64FD64D10C8G64P48HL20-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 10 -nDenseConv 8 -growthRate 64 -patchSize 48 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 -halfLife 20e3 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-BIX2F64FD64D10C8G64P40HL20BS32-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 10 -nDenseConv 8 -growthRate 64 -patchSize 40 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 -halfLife 20e3 -batchSize 32 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-BIX2F64FD64D10C8G64P40HL20BS64-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 10 -nDenseConv 8 -growthRate 64 -patchSize 40 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 -halfLife 20e3 -batchSize 64 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-BIX2F64FD64D16C8G64P48HL20-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 48 -dataset SR291 -datatype t7 -DownKernel BI  -addBlockSkip true -splitBatch 2 -halfLife 20e3 2>&1 | tee $LOG
+
+##################################################################################################################################
+### BD: blur+downsample
+## data augmentation=false
+#BDX3F64FD64D16C8G64P96
+# -halfLife 10
+LOG=./../experiment/RDN-BDX3F64FD64D16C8G64P96HL10-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel BD  -addBlockSkip true -splitBatch 2 -halfLife 10e3 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-BDX3F64FD64D16C8G64P96HL10-SM0-pretrain23-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel BD  -addBlockSkip true -splitBatch 2 -halfLife 10e3 -subMean false -preTrained ../experiment/2018-01-18_10-13-31-RDN-BDX3F64FD64D16C8G64P96HL10-2018-01-18-10-13-30/model/model_23.t7 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-BDX3F64FD64D10C8G64P72HL10-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=2 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 10 -nDenseConv 8 -growthRate 64 -patchSize 72 -dataset SR291 -datatype t7 -DownKernel BD  -addBlockSkip true -splitBatch 2 -halfLife 10e3 2>&1 | tee $LOG
+
+##################################################################################################################################
+
+##################################################################################################################################
+### DN: downsample+noise
+#DNX3F64FD64D16C8G64P96
+# -halfLife 10
+LOG=./../experiment/RDN-DNX3F64FD64D16C8G64P96HL10-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel DN  -addBlockSkip true -splitBatch 2 -halfLife 10e3 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-DNX3F64FD64D16C8G64P96HL10L1loss-pretrain10-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel DN  -addBlockSkip true -splitBatch 2 -halfLife 10e3 -lr 1e-5 -abs 0 -mse 1 -preTrained ../experiment/2018-01-18_10-14-19-RDN-DNX3F64FD64D16C8G64P96HL10-2018-01-18-10-14-18/model/model_10.t7  2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-DNX3F64FD64D16C8G64P96HL10L1lossSubMean0-pretrain10-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel DN  -addBlockSkip true -splitBatch 2 -halfLife 10e3 -lr 1e-5 -abs 0 -mse 1 -preTrained ../experiment/2018-01-18_10-14-19-RDN-DNX3F64FD64D16C8G64P96HL10-2018-01-18-10-14-18/model/model_10.t7 -subMean False 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-DNX3F64FD64D16C8G64P96HL10L1lossSubMean0-pretrain10-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -dataset SR291 -datatype t7 -DownKernel DN  -addBlockSkip true -splitBatch 2 -halfLife 10e3 -lr 1e-5 -abs 0 -mse 1 -preTrained ../experiment/2018-01-18_10-14-19-RDN-DNX3F64FD64D16C8G64P96HL10-2018-01-18-10-14-18/model/model_10.t7 -subMean False 2>&1 | tee $LOG
+
+LOG=./../experiment/RDN-DNX3F64FD64D10C8G64P72HL10L2lossSubMean0-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=1 th main.lua -scale 3 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 10 -nDenseConv 8 -growthRate 64 -patchSize 72 -dataset SR291 -datatype t7 -DownKernel DN  -addBlockSkip true -splitBatch 2 -halfLife 10e3 -abs 0 -mse 1 -subMean False 2>&1 | tee $LOG
+##################################################################################################################################
+
+
+
+
+##################################################################################################################################
+### BI: bicubic
+## data augmentation=false
+#BIX2-EDSR-F256R32P72
+# -halfLife 20
+LOG=./../experiment/EDSR-BIX2F256R32P72HL20-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=0 th main.lua -scale 2 -nFeat 256 -nResBlock 32 -patchSize 72 -scaleRes 0.1 -skipBatch 3 -halfLife 20e3 2>&1 | tee $LOG
+
+
+
+### for reviewer 3, residual learning
+### Namely, BIX2F64FD64D16C8G64P96CM1LRL0GFF1-DIV2K-SB4
+LOG=./../experiment/DFFSRv1030-BIX2F64FD64D16C8G64P96CM1LRL0GFF1-DIV2K-SB4-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 2 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 96 -datadir /home/yulun/data -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip false  -splitBatch 4 2>&1 | tee $LOG
+
+### Namely, BIX4F64FD64D16C8G64P144CM1LRL0GFF1-DIV2K-SB4
+LOG=./../experiment/DFFSRv1030-BIX4F64FD64D16C8G64P144CM1LRL0GFF1-DIV2K-SB2-prex2-13-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 4 -netType resnet_cu -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 144 -datadir /home/yulun/data -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip false  -splitBatch 2 -preTrained ../experiment/2018-01-20_11-55-01-DFFSRv1030-BIX2F64FD64D16C8G64P96CM1LRL0GFF1-DIV2K-SB4-2018-01-20-11-55-01/model/model_13.t7 -valOffset 800 2>&1 | tee $LOG
+
+LOG=./../experiment/DFFSRv1030-BIX4F64FD64D16C8G64P144CM1LRL0GFF1-DIV2K-SB2-prex4-50-`date +%Y-%m-%d-%H-%M-%S`.txt
+CUDA_VISIBLE_DEVICES=3 th main.lua -scale 4 -netType DFFSRv1030 -nFeat 64 -nFeaSDB 64 -nDenseBlock 16 -nDenseConv 8 -growthRate 64 -patchSize 144 -datadir /home/yulun/data -dataset div2k -datatype t7 -DownKernel BI  -addBlockSkip false  -splitBatch 2 -preTrained ../experiment/2018-01-20_14-18-26/model/model_50.t7 -valOffset 800 2>&1 | tee $LOG
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
