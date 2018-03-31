@@ -12,6 +12,7 @@
 2. Run 'TestRDN.lua'
 
 **You can use scripts in file 'TestRDN_scripts' to produce results for our paper.**
+
     ```bash
     # No self-ensemble: RDN
     # BI degradation model, X2, X3, X4
