@@ -11,7 +11,7 @@
 
 2. Run 'TestRDN.lua'
 
-**You can use scripts in file 'TestRDN_scripts' to produce results for our paper.**
+    **You can use scripts in file 'TestRDN_scripts' to produce results for our paper.**
 
     ```bash
     # No self-ensemble: RDN
