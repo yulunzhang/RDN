@@ -63,7 +63,7 @@ function M.parse(arg)
     cmd:option('-skipBatch',        3,                  'Skip mini-batch if the error is bigger than skipBath * (previous error), 2')
     cmd:option('-reset',            'false',            'Reset training')
     cmd:option('-chopShave',        10,                 'Shave width for chopForward')
-    cmd:option('-chopSize',         2e4,               'Minimum chop size for chopForward, 16e4')
+    cmd:option('-chopSize',         1e4,               'Minimum chop size for chopForward, 16e4')
     cmd:option('-naiveForward',     'false',            'Simple forward when test, false')
     -- Optimization
     cmd:option('-optimMethod',      'ADAM',             'Optimization method')
