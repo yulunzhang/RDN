@@ -26,7 +26,7 @@ cmd:option('-scale',        2,              'scale factor: 2 | 3 | 4')
 cmd:option('-degrade',      'bicubic',      'degrading opertor: bicubic | unknown')
 
 cmd:option('-chopShave',    10,             'Shave width for chopForward')
-cmd:option('-chopSize',     4e4,            'Minimum chop size for chopForward')
+cmd:option('-chopSize',     1e4,            'Minimum chop size for chopForward')
 cmd:option('-selfEnsemble', 'false',        'enables self ensemble with flip and rotation')
 cmd:option('-inplace',      'false',        'inplace operation')
 cmd:option('-progress',     'true',         'show current progress')
