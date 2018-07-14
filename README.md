@@ -6,6 +6,8 @@ This repository is for RDN introduced in the following paper
 
 The code is built on [EDSR (Torch)](https://github.com/LimBee/NTIRE2017) and tested on Ubuntu 14.04 environment (Torch7, CUDA8.0, cuDNN5.1) with Titan X/1080Ti/Xp GPUs.
 
+Other implementations: [PyTorch_version](https://github.com/thstkdgus35/EDSR-PyTorch) has been implemented by Nguyễn Trần Toàn (trantoan060689@gmail.com) and merged into [EDSR_PyTorch](https://github.com/thstkdgus35/EDSR-PyTorch).
+
 ## Contents
 1. [Introduction](#introduction)
 2. [Train](#train)
@@ -124,8 +126,16 @@ Table 1. Benchmark results with BI degradation model. Average PSNR/SSIM values f
 Table 2. Benchmark results with BD and DN degradation models. Average PSNR/SSIM values for scaling factor ×3.
 
 ## Citation
-If you find our code helpful in your resarch or work, please cite our paper.
+If you find the code helpful in your resarch or work, please cite the following papers.
 ```
+@InProceedings{Lim_2017_CVPR_Workshops,
+  author = {Lim, Bee and Son, Sanghyun and Kim, Heewon and Nah, Seungjun and Lee, Kyoung Mu},
+  title = {Enhanced Deep Residual Networks for Single Image Super-Resolution},
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+  month = {July},
+  year = {2017}
+}
+
 @inproceedings{zhang2018residual,
     title={Residual Dense Network for Image Super-Resolution},
     author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
@@ -134,4 +144,4 @@ If you find our code helpful in your resarch or work, please cite our paper.
 }
 ```
 ## Acknowledgements
-This code is built on [EDSR (Torch)](https://github.com/LimBee/NTIRE2017). We thank the authors for sharing their codes of EDSR [Torch version](https://github.com/LimBee/NTIRE2017) and [PyTorch version](https://github.com/thstkdgus35/EDSR-PyTorch). 
+This code is built on [EDSR (Torch)](https://github.com/LimBee/NTIRE2017). We thank the authors for sharing their codes of EDSR [Torch version](https://github.com/LimBee/NTIRE2017) and [PyTorch version](https://github.com/thstkdgus35/EDSR-PyTorch).
