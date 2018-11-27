@@ -45,7 +45,7 @@ function M.parse(arg)
     cmd:option('-imagenetSize',     50000,               'Number of images in Flickr2K dataset')
     cmd:option('-nGradStat',        1e4,                'Number of patches used for calulating gradient statistics')
     -- Training
-    cmd:option('-nEpochs',          10000,                'Number of total epochs to run. 0: Infinite')
+    cmd:option('-nEpochs',          1000,                'Number of total epochs to run. 0: Infinite')
     cmd:option('-startEpoch',       0,                  'Manual epoch number for resuming the training. Default is the end')
     cmd:option('-lrDecay',          'step',             'Learning rate decaying method: step | exp | inv | schedule')
     cmd:option('-halfLife',         200e3,              'Half-life of learning rate: default is 200e3')
