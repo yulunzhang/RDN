@@ -46,7 +46,7 @@ To be updated!!!
 ### Quick start for DN_Gray
 1. Download models for our paper and place them in '/RDN_IR/RDN_TestCode/RDN_DN_Gray/model'.
 
-    All the models can be downloaded from [Baidu]().
+    All the models can be downloaded from [Baidu](https://pan.baidu.com/s/13sbwGX8QauNCPpp0oUWUmQ).
 
 2. Run 'TestRDN_DN_Gray.lua'
 
@@ -68,11 +68,11 @@ To be updated!!!
 ### Quick start for DN_RGB
 1. Download models for our paper and place them in '/RDN_IR/RDN_TestCode/RDN_DN_RGB/model'.
 
-    All the models can be downloaded from [Baidu]().
+    All the models can be downloaded from [Baidu](https://pan.baidu.com/s/1rQ9Mofa1C8Ls73H96oYHFQ).
 
 2. Run 'TestRDN_DN_RGB.lua'
 
-    **You can use scripts in file 'TestRDN_scripts' to produce results for our paper.**
+    **You can use the following scripts to produce results for our paper.**
 
     ```bash
     # No self-ensemble: RDN
@@ -90,7 +90,7 @@ To be updated!!!
 ### Quick start for CAR_Y
 1. Download models for our paper and place them in '/RDN_IR/RDN_TestCode/RDN_CAR_Y/model'.
 
-    All the models can be downloaded from [Baidu]().
+    All the models can be downloaded from [Baidu](https://pan.baidu.com/s/1taQIng9vPdNJ4ax3qLrE4Q).
 
 2. Run 'TestRDN.lua'
 
