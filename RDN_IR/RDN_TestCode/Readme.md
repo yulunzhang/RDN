@@ -53,13 +53,13 @@ To be updated!!!
     **You can use the following scripts to produce results for our paper.**
 
     ```bash
-    # selfEnsemble=false
+    # No self-ensemble: RDN
     th TestRDN_DN_Gray.lua -model RDN_DN_Gray_N10 -noise 10 -selfEnsemble false -dataset Kodak24 
     th TestRDN_DN_Gray.lua -model RDN_DN_Gray_N30 -noise 30 -selfEnsemble false -dataset Kodak24 
     th TestRDN_DN_Gray.lua -model RDN_DN_Gray_N50 -noise 50 -selfEnsemble false -dataset Kodak24 
     th TestRDN_DN_Gray.lua -model RDN_DN_Gray_N70 -noise 70 -selfEnsemble false -dataset Kodak24 
 
-    # selfEnsemble=true
+    # With self-ensemble: RDN+
     th TestRDN_DN_Gray.lua -model RDN_DN_Gray_N10 -noise 10 -selfEnsemble true -dataset Kodak24 
     th TestRDN_DN_Gray.lua -model RDN_DN_Gray_N30 -noise 30 -selfEnsemble true -dataset Kodak24 
     th TestRDN_DN_Gray.lua -model RDN_DN_Gray_N50 -noise 50 -selfEnsemble true -dataset Kodak24 
@@ -81,7 +81,7 @@ To be updated!!!
     th TestRDN_DN_RGB.lua -model RDN_DN_RGB_N50 -noise 50 -selfEnsemble false -dataset Kodak24 
     th TestRDN_DN_RGB.lua -model RDN_DN_RGB_N70 -noise 70 -selfEnsemble false -dataset Kodak24 
 
-    # selfEnsemble=true
+    # With self-ensemble: RDN+
     th TestRDN_DN_RGB.lua -model RDN_DN_RGB_N10 -noise 10 -selfEnsemble true -dataset Kodak24 
     th TestRDN_DN_RGB.lua -model RDN_DN_RGB_N30 -noise 30 -selfEnsemble true -dataset Kodak24 
     th TestRDN_DN_RGB.lua -model RDN_DN_RGB_N50 -noise 50 -selfEnsemble true -dataset Kodak24 
@@ -92,7 +92,7 @@ To be updated!!!
 
     All the models can be downloaded from [Baidu](https://pan.baidu.com/s/1taQIng9vPdNJ4ax3qLrE4Q).
 
-2. Run 'TestRDN.lua'
+2. Run 'TestRDN_CAR_Y.lua'
 
     **You can use the following scripts to produce results for our paper.**
 
@@ -103,7 +103,7 @@ To be updated!!!
     th TestRDN_CAR_Y.lua -model RDN_CAR_Y_Q30 -noise 30 -selfEnsemble false -dataset Classic5
     th TestRDN_CAR_Y.lua -model RDN_CAR_Y_Q40 -noise 40 -selfEnsemble false -dataset Classic5
 
-    ## selfEnsemble=true,
+    ## With self-ensemble: RDN+
     th TestRDN_CAR_Y.lua -model RDN_CAR_Y_Q10 -noise 10 -selfEnsemble true -dataset Classic5
     th TestRDN_CAR_Y.lua -model RDN_CAR_Y_Q20 -noise 20 -selfEnsemble true -dataset Classic5
     th TestRDN_CAR_Y.lua -model RDN_CAR_Y_Q30 -noise 30 -selfEnsemble true -dataset Classic5
