@@ -145,11 +145,11 @@ If you find the code helpful in your resarch or work, please cite the following 
     year={2018}
 }
 
-@article{zhang2018rdnir,
+@article{zhang2020rdnir,
     title={Residual Dense Network for Image Restoration},
     author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
-    booktitle={arXiv},
-    year={2018}
+    journal={TPAMI},
+    year={2020}
 }
 
 ```
