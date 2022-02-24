@@ -135,11 +135,15 @@ If you find the code helpful in your resarch or work, please cite the following 
     year={2018}
 }
 
-@article{zhang2018rdnir,
-    title={Residual Dense Network for Image Restoration},
-    author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
-    booktitle={arXiv},
-    year={2018}
+@article{zhang2020residual,
+  title={Residual dense network for image restoration},
+  author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={43},
+  number={7},
+  pages={2480--2495},
+  year={2020},
+  publisher={IEEE}
 }
 
 ```
