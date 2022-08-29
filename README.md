@@ -3,10 +3,11 @@ This repository is for RDN introduced in the following paper
 
 [Yulun Zhang](http://yulunzhang.com/), [Yapeng Tian](http://yapengtian.org/), [Yu Kong](http://www1.ece.neu.edu/~yukong/), [Bineng Zhong](https://scholar.google.de/citations?user=hvRBydsAAAAJ&hl=en), and [Yun Fu](http://www1.ece.neu.edu/~yunfu/), "Residual Dense Network for Image Super-Resolution", CVPR 2018 (spotlight), [[arXiv]](https://arxiv.org/abs/1802.08797) 
 
-[[Visual Results@BaiduDrive]](https://pan.baidu.com/s/1jKmu14y), [[Visual Results@GoodleDrive]](https://drive.google.com/file/d/1iXv8pxPz28DmpkUQycZHeKkP1rxReIqN/view?usp=sharing) 
-
 [Yulun Zhang](http://yulunzhang.com/), [Yapeng Tian](http://yapengtian.org/), [Yu Kong](http://www1.ece.neu.edu/~yukong/), [Bineng Zhong](https://scholar.google.de/citations?user=hvRBydsAAAAJ&hl=en), and [Yun Fu](http://www1.ece.neu.edu/~yunfu/), "Residual Dense Network for Image Restoration", arXiv 2018, [[arXiv]](https://arxiv.org/abs/1812.10477) 
 
+**Visual Results**
+
+[[Visual Results@BaiduDrive]](https://pan.baidu.com/s/1jKmu14y), [[Visual Results@GoodleDrive]](https://drive.google.com/file/d/1iXv8pxPz28DmpkUQycZHeKkP1rxReIqN/view?usp=sharing)
 
 The code is built on [EDSR (Torch)](https://github.com/LimBee/NTIRE2017) and tested on Ubuntu 14.04 environment (Torch7, CUDA8.0, cuDNN5.1) with Titan X/1080Ti/Xp GPUs.
 
@@ -123,6 +124,9 @@ For more informaiton, please refer to [EDSR(Torch)](https://github.com/LimBee/NT
 
 
 ## Results
+**Visual Results**
+
+[[Visual Results@BaiduDrive]](https://pan.baidu.com/s/1jKmu14y), [[Visual Results@GoodleDrive]](https://drive.google.com/file/d/1iXv8pxPz28DmpkUQycZHeKkP1rxReIqN/view?usp=sharing)
 ![PSNR_SSIM_BI](/Figs/PSNR_SSIM_BI.png)
 Table 1. Benchmark results with BI degradation model. Average PSNR/SSIM values for scaling factor ×2, ×3, and ×4.
 
